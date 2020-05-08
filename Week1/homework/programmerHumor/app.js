@@ -3,7 +3,7 @@
 const endPoint = "https://xkcd.now.sh/?comic=latest";
 const img = document.createElement("img");
 
-function callApiWithXHR() {
+function createXHR(endPoint) {
   const xhr = new XMLHttpRequest();
   xhr.responseType = "json";
   xhr.onload = function () {
@@ -19,10 +19,10 @@ function callApiWithXHR() {
     alert("Request failed");
   };
 
-  xhr.open("GET", endPoint, true);
+  xhr.open("GET", endPoint);
   xhr.send();
 }
-function callApiWithAxios() {
+function createAxios(endPoint) {
   axios
     .get(endPoint)
     .then(function (response) {
@@ -40,5 +40,5 @@ function callApiWithAxios() {
 
 function insertImage() {}
 
-//callApiWithXHR();
-callApiWithAxios();
+//createXHR(endPoint);
+createAxios(endPoint);

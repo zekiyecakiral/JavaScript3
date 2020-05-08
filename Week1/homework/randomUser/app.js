@@ -4,27 +4,27 @@ const endPoint = "https://www.randomuser.me/api";
 
 const button = document.getElementById("add");
 
-function newFriendWithXHR() {
+function createXHR(url) {
   const xhr = new XMLHttpRequest();
   xhr.responseType = "json";
   xhr.onload = function () {
-    if (xhr.status == 200) {
+    if (xhr.status >= 200 &&  xhr.status < 400) {
       addNewFriend(convertToMyObject(xhr.response));
       console.log(xhr.response);
-    } else if (xhr.status == 400) {
-      console.log("Not Found");
+    } else {
+      console.log(xhr.status, xhr.responseText);
     }
   };
   xhr.onerror = function () {
-    alert("Request failed");
+   console.log("Request failed");
   };
 
-  xhr.open("GET", endPoint, true);
+  xhr.open("GET", url);
   xhr.send();
 }
-function newFriendWithAxios() {
+function createAxios(url) {
   axios
-    .get(endPoint)
+    .get(url)
     .then(function (response) {
       addNewFriend(convertToMyObject(response.data));
       console.log(response);
@@ -38,14 +38,14 @@ function newFriendWithAxios() {
 }
 
 function convertToMyObject(response) {
-  const myObj = {
+  const myObject = {
     title: response.results[0].name.title,
     name: response.results[0].name.first,
     lastName: response.results[0].name.last,
     email: response.results[0].email,
     image: response.results[0].picture.medium,
   };
-  return myObj;
+  return myObject;
 }
 
 function addNewFriend(newFriend) {
@@ -73,5 +73,9 @@ function addNewFriend(newFriend) {
   document.body.appendChild(container);
 }
 
-//button.addEventListener("click", newFriendWithAxios);
-button.addEventListener("click", newFriendWithXHR);
+// button.addEventListener("click", function (){
+//   createAxios(endPoint)
+// });
+button.addEventListener("click", function (){
+  createXHR(endPoint);
+});

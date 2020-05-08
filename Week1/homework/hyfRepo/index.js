@@ -17,7 +17,7 @@ function fetchJSON() {
     createAndAppend("", "Request failed");
   };
 
-  xhr.open("GET", HYF_REPOS_URL + "?" + params, true);
+  xhr.open("GET", HYF_REPOS_URL + "?" + params);
   xhr.send();
 }
 
