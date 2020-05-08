@@ -1,0 +1,41 @@
+.container{
+    display:flex;
+    /* background-color:rgb(239, 246, 249); */
+    margin: 20px;
+    padding: 20px;
+    flex-direction: row;
+}
+
+.addBtn{
+    background-color: #233f69; 
+    border: none;
+    color: white;
+    padding: 20px;
+    margin:20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; 
+    border-radius: 4px;
+  
+}
+.addBtn:hover {
+    background-color: #385d96;
+    color: white;
+}
+.top{
+    display: flex;
+    justify-content: center;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+li{
+    margin:10px;
+}
