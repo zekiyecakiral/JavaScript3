@@ -1,0 +1,120 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f4;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  width: 159px;
+}
+h1 {
+  color: white;
+  padding: 10px;
+}
+h3 {
+  padding-left: 20px;
+  font-size: 20px;
+  color: gray;
+}
+p {
+  font-size: 15px;
+  width: 100%;
+}
+
+select {
+  width: 100%;
+  font-size: 17px;
+  background-color: white;
+  margin: 10px;
+  height: 45px;
+}
+span {
+  font-size: 14px;
+}
+img {
+  width: 70px;
+  padding: 10px;
+}
+.item {
+  display: flex;
+  align-items: center;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  background-color: #395cbf;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.repo-container {
+  width: 50%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+  box-shadow: 2px 0px 5px #aaaaaa;
+}
+.contributors-container {
+  width: 50%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 2px 0px 5px #aaaaaa;
+}
+.contributor-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contributor {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin-bottom: 1px;
+  justify-content: space-between;
+  background-color: white;
+  padding-bottom: 1px;
+  align-items: center;
+}
+.repoInfo {
+  padding: 10px;
+}
+.contributor-count {
+  background-color: #f4f4f4;
+  padding: 6px;
+  border-radius: 5px;
+  width: 16px;
+}
+
+@media only screen and (max-width: 960px) {
+  h1 {
+    font-size: 17px;
+  }
+  h3 {
+    font-size: 13px;
+  }
+  img {
+    width: 50px;
+  }
+  label {
+    font-size: 15px;
+  }
+  .contributor-count {
+    font-size: 13px;
+  }
+}

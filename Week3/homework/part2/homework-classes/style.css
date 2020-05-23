@@ -1,0 +1,76 @@
+.alert-error {
+  color: red;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #e3e3e3;
+}
+img {
+  width: 70px;
+  padding: 10px;
+}
+
+
+.header{
+  display: flex;
+  flex-direction: row;
+  background-color: #395cbf;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  color:white;
+  font-size: 23px;
+}
+.repo-select{
+  font-size: 17px;
+  background-color: white;
+  margin: 10px;
+  height: 45px;
+}
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.repo-container {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 2px 0px 5px #aaaaaa;
+}
+.repo-table {
+  padding: 20px;
+  text-align: left;
+}
+.contributors-container {
+  width: 50%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 2px 0px 5px #aaaaaa;
+}
+.contributor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.contribution-counts {
+  background-color: #808080;
+  color: white;
+  padding: 6px 8px;
+  min-width: 50px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
