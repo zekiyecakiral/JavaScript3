@@ -1,20 +1,22 @@
 "use strict";
 const HYF_REPOS_URL = "https://api.github.com/orgs/HackYourFuture/repos";
-function fetchJSON(endPoint, callback) {
-  fetch(endPoint)
-    .then((response) => {
-      if (response.status >= 200 && response.status < 400) {
-        return response.json();
-      } else {
-        throw "HTTP ERROR!";
-      }
-    })
-    .then((jsonData) => {
-      callback(jsonData, arguments[2]);
-    })
-    .catch((error) => {
-      document.getElementById("root").innerHTML = error;
-    });
+function fetchJSON(endPoint) {
+   let response = fetch(endPoint)
+   // the promise  returned by fetch
+   return response;
+}
+
+function fetchPromise(endPoint,callback){
+  fetchJSON(endPoint).then((jsonData) => {
+    return jsonData.json();
+  }).then(data=>{
+    callback(data, arguments[2]);
+
+  })
+  .catch((error) => {
+    document.getElementById("root").innerHTML = error;
+  });
+
 }
 
 function renderRepositories(jsonData, filteredItem) {
@@ -74,7 +76,7 @@ function renderRepositories(jsonData, filteredItem) {
   });
 
   // this code calls the contributors who contributed to this repository
-  fetchJSON(filteredJSONData.contributors_url, renderContributors);
+  fetchPromise(filteredJSONData.contributors_url, renderContributors);
 }
 
 function renderContributors(contributorJSON) {
@@ -131,16 +133,16 @@ function renderSelect(jsonData) {
 
 window.onload = () => {
   // At start-up my application will display information about the first repository
-  fetchJSON(HYF_REPOS_URL, renderRepositories);
+  fetchPromise(HYF_REPOS_URL, renderRepositories);
 
   // At start-up, it will be load select information
-  fetchJSON(HYF_REPOS_URL, renderSelect);
+  fetchPromise(HYF_REPOS_URL, renderSelect);
 
   // this code will be worked if select option is changed
   const repositories = document.getElementById("selectRepository");
   let selectedOption = "";
   repositories.addEventListener("change", (event) => {
     selectedOption = event.target.selectedOptions[0].text;
-    fetchJSON(HYF_REPOS_URL, renderRepositories, selectedOption);
+    fetchPromise(HYF_REPOS_URL, renderRepositories, selectedOption);
   });
 };
