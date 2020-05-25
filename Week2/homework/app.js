@@ -1,22 +1,14 @@
 "use strict";
 const HYF_REPOS_URL = "https://api.github.com/orgs/HackYourFuture/repos";
 function fetchJSON(endPoint) {
-   let response = fetch(endPoint)
-   // the promise  returned by fetch
-   return response;
-}
-
-function fetchPromise(endPoint,callback){
-  fetchJSON(endPoint).then((jsonData) => {
-    return jsonData.json();
-  }).then(data=>{
-    callback(data, arguments[2]);
-
-  })
-  .catch((error) => {
-    document.getElementById("root").innerHTML = error;
-  });
-
+  let response = fetch(endPoint)
+    .then((jsonData) => {
+      return jsonData.json();
+    })
+    .catch((error) => {
+      document.getElementById("root").innerHTML = error;
+    });
+  return response;
 }
 
 function renderRepositories(jsonData, filteredItem) {
@@ -76,7 +68,9 @@ function renderRepositories(jsonData, filteredItem) {
   });
 
   // this code calls the contributors who contributed to this repository
-  fetchPromise(filteredJSONData.contributors_url, renderContributors);
+  fetchJSON(filteredJSONData.contributors_url)
+  .then( (jsonData) => { renderContributors(jsonData) });
+
 }
 
 function renderContributors(contributorJSON) {
@@ -133,16 +127,19 @@ function renderSelect(jsonData) {
 
 window.onload = () => {
   // At start-up my application will display information about the first repository
-  fetchPromise(HYF_REPOS_URL, renderRepositories);
+  fetchJSON(HYF_REPOS_URL)
+    .then( (jsonData) => { renderRepositories(jsonData) });
 
   // At start-up, it will be load select information
-  fetchPromise(HYF_REPOS_URL, renderSelect);
+  fetchJSON(HYF_REPOS_URL)
+    .then( (jsonData) => { renderSelect(jsonData) });
 
   // this code will be worked if select option is changed
   const repositories = document.getElementById("selectRepository");
   let selectedOption = "";
   repositories.addEventListener("change", (event) => {
     selectedOption = event.target.selectedOptions[0].text;
-    fetchPromise(HYF_REPOS_URL, renderRepositories, selectedOption);
+    fetchJSON(HYF_REPOS_URL)
+    .then( (jsonData) => { renderRepositories(jsonData,selectedOption) });
   });
 };
